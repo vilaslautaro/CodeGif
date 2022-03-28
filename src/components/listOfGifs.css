@@ -1,5 +1,10 @@
 .app__Section{
     max-width: 2000px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, 1fr);
   }
+
+.cargando{
+  font-size: 40px;
+  color: #fff;
+}
