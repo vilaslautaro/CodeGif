@@ -1,23 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import ListOfGifs from './components/ListOfGifs'
+import { Routes, Route, Link } from "react-router-dom";
+import {createContext} from 'react';
 
 function App() {
+
+  
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Gifs</h1>
+      <Routes>
+        <Link className="app__Enlaces" to="/gif/Bitcoin">Bitcoin</Link>
+        <Link className="app__Enlaces" to="/gif/Ethereum">Ethereum</Link>
+        <Link className="app__Enlaces" to="/gif/Doge">Doge</Link>
+        <Link className="app__Enlaces" to="/gif/NFT">NFT</Link>
+        <Route
+          path="/gif/:keyword"
+          element={ <ListOfGifs/> }
+        />
+      </Routes>
     </div>
   );
 }
