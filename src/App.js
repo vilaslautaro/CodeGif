@@ -1,27 +1,29 @@
 import './App.css';
-import {useState} from 'react'
 import ListOfGifs from './components/ListOfGifs'
+import ItemGif from './components/ItemGif'
+import { Link, Route } from 'wouter'
 
 
 
 function App() {
-
-  const [searchValue, setSearchValue] = useState('bitcoin')
-
-  const newSearch= value => {
-    setSearchValue(value)
-  }
-
+  
   return (
     <div className="App">
       <h1>Gifs</h1>
-      <header>
-        <nav>
-          <button onClick={() => newSearch('ethereum')}>Ethereum</button>
-          <button onClick={() => newSearch('doge')}>Doge</button>
-        </nav>
-      </header>
-      <ListOfGifs search={searchValue} />
+      <nav className='menu'>
+        <Link className='menu__enlaces' to='/'>Inicio</Link>
+        <Link className='menu__enlaces' to='/gifs/Bitcoin'>Bitcoin</Link>
+        <Link className='menu__enlaces' to='/gifs/Ethereum'>Ethereum</Link>
+        <Link className='menu__enlaces' to='/gifs/Doge'>Doge</Link>
+      </nav>
+      <Route
+        component={ListOfGifs}
+        path="/gifs/:keyword"
+      />
+      <Route 
+        component={ItemGif}
+        path="/gif/:keyword/:id"
+      />
     </div>
   );
 }

@@ -3,33 +3,31 @@ import { useState, useEffect } from 'react'
 import GetGifs from '../services/GetGifs'
 import './listOfGifs.css'
 
-export default function ListOfGifs({search}) {
-    const [loading, setLoading] = useState(true)
+export default function ListOfGifs({params}) {
     const [gifs, setGifs] = useState([]);
+    const {keyword} = params
+
 
     useEffect(() => {
-        GetGifs({ keyword: search })
+        GetGifs({ keyword })
             .then(gifs => {
                 setGifs(gifs)
-                setLoading(false)
             })
-    }, [search])
+    }, [keyword])
 
     return (
-        loading
-            ? <i className='cargando'>Cargando...</i>
-            :
             <div className="app__Section">
                 {
                     gifs.map(({ id, title, url }) =>
                         <Gif
+                            keyword={keyword}
+                            id={id}
                             key={id}
                             title={title}
                             url={url}
                         />
                     )
                 }
-
             </div>
     )
 }

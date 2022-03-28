@@ -3,7 +3,8 @@
     background: #fff; 
     border-radius:15px;
     padding: 0 10px;
-    width: 30%;
+    height: fit-content;
+    width: -webkit-fill-available;
     text-decoration: none;
     border: 2px solid #ffd100;
 }
@@ -15,8 +16,9 @@
 
 .gif > img{
     object-fit: contain;
-    min-width: 300px;
-    min-height: 300px;
+    /* min-width: 300px; */
+    /* min-height: 300px; */
+    width: 100%;
     margin-bottom: 20px;
     border-radius:15px;
 }
