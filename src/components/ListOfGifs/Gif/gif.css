@@ -1,0 +1,36 @@
+.gif{
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    border-radius:15px;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    width: 100%;
+}
+
+.gif:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.gif > img{
+    width: 100%;
+    border-radius:15px;
+    z-index: 2;
+}
+
+.gif > span{
+    color: #fff;
+    bottom: -2px;
+    left: 0;
+    border-radius: 0px 15px 0px 15px;
+    padding: 5px 12px 9px;
+    margin: 0;
+    text-transform: uppercase;
+    position:absolute;
+    z-index: 3;
+    background: rgba(0, 0, 0, 0.7);   
+    margin: 10px 0 5px;
+    font-size: 0.7rem;
+}

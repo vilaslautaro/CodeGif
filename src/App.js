@@ -1,29 +1,28 @@
 import './App.css';
-import ListOfGifs from './components/ListOfGifs'
-import ItemGif from './components/ItemGif'
-import { Link, Route } from 'wouter'
-
-
+import Home from './pages/Home/Home'
+import Detail from './pages/Detail/Detail'
+import SearchResults from './pages/SearchResults/SearchResults'
+import { Route, Link } from 'wouter'
 
 function App() {
-  
+
   return (
     <div className="App">
-      <h1>Gifs</h1>
-      <nav className='menu'>
-        <Link className='menu__enlaces' to='/'>Inicio</Link>
-        <Link className='menu__enlaces' to='/gifs/Bitcoin'>Bitcoin</Link>
-        <Link className='menu__enlaces' to='/gifs/Ethereum'>Ethereum</Link>
-        <Link className='menu__enlaces' to='/gifs/Doge'>Doge</Link>
-      </nav>
-      <Route
-        component={ListOfGifs}
-        path="/gifs/:keyword"
-      />
-      <Route 
-        component={ItemGif}
-        path="/gif/:keyword/:id"
-      />
+      <Link to="/" className="titulo">Inicio</Link>
+      <section className='container'>
+        <Route
+          component={Home}
+          path="/"
+        />
+        <Route
+          component={Detail}
+          path="/gif/:keyword/:id"
+        />
+        <Route
+          component={SearchResults}
+          path="/gifs/:keyword"
+        />
+      </section>
     </div>
   );
 }

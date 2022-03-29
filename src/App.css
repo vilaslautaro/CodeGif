@@ -1,25 +1,22 @@
 .App {
   text-align: center;
-  background: #000;
-  margin: 30px auto;
+  background: rgb(24, 117, 78);
+  margin: 0 auto;
+  padding: 30px 0;
 }
 
-.app__Enlaces{
-  text-decoration: none;
-  color: #fff;
-  display: flex;
-  flex-flow: column wrap;
-  margin: 10px 0 0;
-  font-size: 1.25rem;
-}
-
-.app__Enlaces:hover{
-  cursor: pointer;
-  text-decoration:underline; 
-}
-
-.App h1{
+.titulo{
   font-size: 30px;
   color: #fff;
-  margin: 0 auto 20px;
+  text-decoration: none;
+  font-size: 3rem;
+  margin: 50px auto 0px;
+}
+
+.titulo:hover{
+  border-bottom: 1px solid #fff;
+}
+
+.container{
+  margin: 0px 20px;
 }
