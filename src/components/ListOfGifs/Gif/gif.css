@@ -7,6 +7,7 @@
     display: inline-block;
     position: relative;
     width: 100%;
+    margin:5px 0;
 }
 
 .gif:hover{
@@ -17,6 +18,7 @@
 .gif > img{
     width: 100%;
     border-radius:15px;
+    
     z-index: 2;
 }
 

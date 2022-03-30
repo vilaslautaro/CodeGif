@@ -9,7 +9,7 @@ export default function Home() {
 
     const [keyword, setKeyword] = useState('')
     const [, pushLocation] = useLocation()
-    const {loading, gifs} = useGifs()
+    const { loading, gifs } = useGifs()
 
 
     const handleSubmit = e => {
@@ -28,12 +28,12 @@ export default function Home() {
                 <input className='input' placeholder="Buscar" onChange={handleInputChange} maxLength={30} type='text' value={keyword} />
             </form>
             <h3 className='container__titulo'>Ultima busqueda</h3>
-            {loading 
-            ?  <Spinner />
-            : <ListOfGifs  gifs={gifs} keyword={keyword} />
-            
+            {loading
+                ? <Spinner />
+                : <ListOfGifs gifs={gifs} />
+
             }
-            
+
         </>
     )
 

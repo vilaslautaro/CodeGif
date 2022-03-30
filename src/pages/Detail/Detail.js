@@ -1,18 +1,17 @@
-import Spinner from '../../components/Spinner'
+import { useContext } from 'react'
 import ItemGif from '../../components/ItemGif/ItemGif'
-import useGif from '../../hooks/useGif'
+import { GifsContextProvider } from '../../context/GifsContext'
 
 export default function Detail({ params }) {
-    const {keyword, id} = params
-    const { loading, gif } = useGif({keyword, id})
+    const { gifs } = useContext(GifsContextProvider)
+
+    const gif = gifs.find(singleGif => {
+        return singleGif.id === params.id
+    })
 
     return (
         <>
-            {loading
-                ? <Spinner />
-                : <ItemGif gif={gif}/>
-
-            }
+            <ItemGif gif={gif} />
         </>
     )
 }

@@ -10,7 +10,7 @@ const SearchResults = ({params}) => {
         <>
             {loading
                 ? <Spinner />
-                : <ListOfGifs gifs={gifs} keyword={keyword}/>
+                : <ListOfGifs gifs={gifs}/>
             }
         </>
     )
