@@ -1,6 +1,5 @@
 
 const ItemGif = ({gif}) => {
-    console.log(gif)
      return (
         <>
             <div className="app__Section">
