@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { useLocation } from 'wouter'
 import './Home.css'
-import ListOfGifs from '../../components/ListOfGifs/ListOfGifs'
-import Spinner from '../../components/Spinner'
-import useGifs from '../../hooks/useGifs'
+import ListOfGifs from 'components/ListOfGifs/ListOfGifs'
+import Spinner from 'components/Spinner/Spinner'
+import useGifs from 'hooks/useGifs'
+import LazyTrending from 'components/TrendingSearches/LazyTrending'
 
 export default function Home() {
 
@@ -27,12 +28,14 @@ export default function Home() {
             <form className='form' onSubmit={handleSubmit}>
                 <input className='input' placeholder="Buscar" onChange={handleInputChange} maxLength={30} type='text' value={keyword} />
             </form>
-            <h3 className='container__titulo'>Ultima busqueda</h3>
-            {loading
-                ? <Spinner />
-                : <ListOfGifs gifs={gifs} />
-
-            }
+            <div className='container__homeGifs'>
+                <h3 className='container__titulo'>Ultima busqueda</h3>
+                {loading
+                    ? <Spinner />
+                    : <ListOfGifs gifs={gifs} />
+                }
+            </div>
+            <LazyTrending />
 
         </>
     )

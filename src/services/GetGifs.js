@@ -1,23 +1,24 @@
+import { API_KEY, API_URL } from './settings'
 
-const GetGifs = ({ keyword }) => {
-    const apiKey = 'l37MmYPXXkcLpKQ7gvfLYAyj4bGpIJVz';
-    const apiGifURL = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${keyword}&limit=20&offset=0&rating=g&lang=es`;
 
-    return (
-        fetch(apiGifURL)
-            .then(res => res.json())
-            .then(response => {
-                const { data } = response
-                if (data.length > 0) {
-                    const gifs = data.map(image => {
-                        const { title, id } = image;
-                        const { url } = image.images.downsized_medium;
-                        return { title, id, url }
-                    });
-                    return gifs;
-                }
-            })
-    )
+
+const fromApiResponseToGifs = apiResponse => {
+    const { data } = apiResponse
+    if (Array.isArray(data)) {
+        const gifs = data.map(image => {
+            const { title, id } = image;
+            const { url } = image.images.downsized_medium;
+            return { title, id, url }
+        });
+        return gifs;
+    }
+    return []
 }
 
-export default GetGifs
+export default async function GetGifs({ limit = 25, keyword = 'simpsons', page = 0 } = {}) {
+    const apiGifURL = `${API_URL}/gifs/search?api_key=${API_KEY}&q=${keyword}&limit=${limit}&offset=${page * limit}&rating=g&lang=es`;
+
+    const res = await fetch(apiGifURL);
+    const apiResponse = await res.json();
+    return fromApiResponseToGifs(apiResponse);
+}

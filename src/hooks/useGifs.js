@@ -1,14 +1,18 @@
 import {useContext, useEffect, useState} from 'react'
-import GetGifs from '../services/GetGifs'
-import GifsContext from '../context/GifsContext'
+import GetGifs from 'services/GetGifs'
+import GifsContext from 'context/GifsContext'
+
+const INITIAL_PAGE = 0
 
 const useGifs = ( {keyword} = {keyword: null }) => {
     const {gifs, setGifs} = useContext(GifsContext);
+    const [page, setPage] = useState(INITIAL_PAGE)
     const [loading, setLoading] = useState(false)
+    const [loadingNextPage, setLoadingNextPage] = useState(false)
+    const keywordToUse = keyword || localStorage.getItem('lastSearch')
 
     useEffect(() => {
         
-        const keywordToUse = keyword || localStorage.getItem('lastSearch') || 'random'
 
         setLoading(true)
         GetGifs({ keyword: keywordToUse })
@@ -17,9 +21,20 @@ const useGifs = ( {keyword} = {keyword: null }) => {
                 setLoading(false)
                 localStorage.setItem('lastSearch', keyword)
             })
-    }, [keyword, setGifs])
+    }, [keyword, keywordToUse, setGifs])
 
-    return {loading, gifs}
+    useEffect(() => {
+        if(page === INITIAL_PAGE) return
+
+        setLoadingNextPage(true)
+        GetGifs({ keyword: keywordToUse, page })
+        .then(nextGifs => {
+            setGifs(prevGifs => prevGifs.concat(nextGifs))
+            setLoadingNextPage(false)
+        })
+    }, [page, keywordToUse, setGifs])
+
+    return {loading, gifs, setPage, loadingNextPage}
 }
 
 export default useGifs
