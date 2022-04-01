@@ -5,20 +5,11 @@
 
 .container__gifs{
     margin: 15px 0 0;
-    column-count: var(--results-columns);
-    column-gap: 1rem;
-    row-gap: 1rem;
     min-height:100vh;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr) );
+    grid-template-rows: masonry;
+    gap: 10px;
   }
 
-  @media screen and (max-width: 900px) {
-    :root{
-    --results-columns: 2;
-    }
-  }
-
-  @media screen and (max-width: 600px) {
-    :root{
-    --results-columns: 1;
-    }
-  }
+ 

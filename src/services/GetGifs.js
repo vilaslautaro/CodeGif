@@ -15,7 +15,7 @@ const fromApiResponseToGifs = apiResponse => {
     return []
 }
 
-export default async function GetGifs({ limit = 25, keyword = 'simpsons', page = 0 } = {}) {
+export default async function GetGifs({ limit = 20, keyword = 'simpsons', page = 0 } = {}) {
     const apiGifURL = `${API_URL}/gifs/search?api_key=${API_KEY}&q=${keyword}&limit=${limit}&offset=${page * limit}&rating=g&lang=es`;
 
     const res = await fetch(apiGifURL);
