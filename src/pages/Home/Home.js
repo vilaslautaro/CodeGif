@@ -27,6 +27,7 @@ export default function Home() {
         <>
             <form className='form' onSubmit={handleSubmit}>
                 <input className='input' placeholder="Buscar" onChange={handleInputChange} maxLength={30} type='text' value={keyword} />
+                <button type="submit">Buscar</button>
             </form>
             <div className='container__homeGifs'>
                 <h3 className='container__titulo'>Ultima busqueda</h3>

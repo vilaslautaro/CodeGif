@@ -1,19 +1,24 @@
+import { Suspense, lazy } from 'react'
 import './App.css';
-import Home from './pages/Home/Home'
 import Detail from './pages/Detail/Detail'
 import SearchResults from './pages/SearchResults/SearchResults'
 import { Route, Link } from 'wouter'
-import {GifsContextProvider} from './context/GifsContext';
+import { GifsContextProvider } from './context/GifsContext';
+
+const HomePage = lazy(
+  () => import('./pages/Home/Home')
+  )
 
 function App() {
 
   return (
-      <div className="App">
-        <Link to="/" className="titulo">Inicio</Link>
+    <div className="App">
+      <Link to="/" className="titulo">Inicio</Link>
+      <Suspense fallback={null} >
         <section className='container'>
           <GifsContextProvider>
             <Route
-              component={Home}
+              component={HomePage}
               path="/"
             />
             <Route
@@ -26,7 +31,8 @@ function App() {
             />
           </GifsContextProvider>
         </section>
-      </div>
+      </Suspense>
+    </div>
   );
 }
 
