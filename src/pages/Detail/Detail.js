@@ -1,17 +1,21 @@
-import { useContext } from 'react'
-import ItemGif from 'components/ItemGif/ItemGif'
-import GifsContextProvider from 'context/GifsContext'
+import SingleGif from 'components/SingleGif/SingleGif'
+import {Redirect} from 'wouter'
+import Spinner from 'components/Spinner/Spinner'
+import useSingleGif from 'hooks/useSingleGif'
+import useSEO from 'hooks/useSEO'
 
 export default function Detail({ params }) {
-    const { gifs } = useContext(GifsContextProvider)
+    const {gif, isLoading, isError} = useSingleGif({id: params.id})
+    const title = gif ? gif.title : ''
+    useSEO({title, description: `Detail of ${title}` })
 
-    const gif = gifs.find(singleGif => {
-        return singleGif.id === params.id
-    })
+    if(isLoading) return <Spinner />
+    if(isError) return <Redirect to="/404" />
+    if(!gif) return null
 
     return (
         <>
-            <ItemGif gif={gif} />
+            <SingleGif gif={gif} />
         </>
     )
 }

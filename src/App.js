@@ -7,7 +7,7 @@ import { GifsContextProvider } from './context/GifsContext';
 
 const HomePage = lazy(
   () => import('./pages/Home/Home')
-  )
+)
 
 function App() {
 
@@ -28,6 +28,10 @@ function App() {
             <Route
               component={SearchResults}
               path="/gifs/:keyword"
+            />
+            <Route
+              component={() => <h1>Error 404</h1>}
+              path="/404"
             />
           </GifsContextProvider>
         </section>

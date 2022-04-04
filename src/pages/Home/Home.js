@@ -6,6 +6,7 @@ import Spinner from 'components/Spinner/Spinner'
 import useGifs from 'hooks/useGifs'
 import LazyTrending from 'components/TrendingSearches/LazyTrending'
 import SearchForm from 'components/SearchForm/SearchForm'
+import useSEO from 'hooks/useSEO'
 
 
 export default function Home() {
@@ -15,6 +16,8 @@ export default function Home() {
     const handleSubmit = useCallback(({keyword}) => {
         pushLocation(`/gifs/${keyword}`)
     }, [pushLocation])
+
+    useSEO({title: 'Home', description: 'Home'})
 
 
     return (
