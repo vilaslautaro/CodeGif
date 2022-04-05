@@ -1,17 +1,17 @@
 import { Link } from 'wouter'
+import './Category.css'
 
 
 export default function Category({ options = [] }) {
     return (
         <section>
-            <div className='category'></div>
-            <h3 className='category-title'>Tendencias</h3>
-            <ul>
+            <h3 className='category__title'>Trendings</h3>
+            <ul className='category__box'>
                 {options.map(singleOption => (
-                    <li key={singleOption}>
+                    <li className='category__contain' key={singleOption}>
                         <Link
-                            className='category-link'
-                            to={`/gifs/${singleOption}`}>
+                            className='category__link'
+                            to={`/search/gifs/${singleOption}/g`}>
                             {singleOption}
                         </Link>
                     </li>

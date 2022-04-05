@@ -1,15 +1,20 @@
 :root{
-  --results-columns: 3;
+  --minmax: 300px; 
 }
 
 
 .container__gifs{
-    margin: 15px 0 0;
+    margin: 15px 0 5px;
     min-height:100vh;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr) );
+    grid-template-columns: repeat(auto-fit, minmax(var(--minmax), 1fr) );
     grid-template-rows: masonry;
     gap: 10px;
   }
 
- 
+ @media screen and (max-width: 400px) {
+    :root{
+      --minmax: 200px;
+    }
+   
+ }

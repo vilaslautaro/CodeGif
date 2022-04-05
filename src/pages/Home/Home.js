@@ -21,7 +21,7 @@ export default function Home() {
                 <SearchForm initialType={'gifs'}/>
             </div>
             <div className='container__homeGifs'>
-                <h3 className='container__titulo'>Ultima busqueda</h3>
+                <h3 className='container__titulo'>Last Search</h3>
                 {loading
                     ? <Spinner />
                     : <ListOfGifs gifs={gifs} />

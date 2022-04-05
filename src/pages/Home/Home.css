@@ -6,19 +6,7 @@
     font-weight: 500;
 }
 
-.form{
-    margin: 10px 0 0;
-}
-
-.input{
-    font-size: 1.5rem;
-    border-radius: 15px;
-    border: none;
-    outline: none;
-    padding: 5px 20px;
-    box-shadow: 0 0 5px #000;
-}
-
 .container__homeGifs{
     min-height: 250vh;
+    padding: 0 20px;
 }

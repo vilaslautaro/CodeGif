@@ -13,7 +13,7 @@ function App() {
 
   return (
     <div className="App">
-      <Link to="/" className="titulo">Inicio</Link>
+      <Link to="/" className="titulo">GifSticky</Link>
       <Suspense fallback={null} >
         <section className='container'>
           <GifsContextProvider>

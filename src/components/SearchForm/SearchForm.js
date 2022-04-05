@@ -1,5 +1,6 @@
 import useForm from 'hooks/useForm'
 import React from 'react'
+import './SearchForm.css'
 import { useLocation } from 'wouter'
 
 const SearchForm = ({ initialKeyword = '', initialRating = 'g', initialType = 'gifs' } = {}) => {
@@ -23,19 +24,23 @@ const SearchForm = ({ initialKeyword = '', initialRating = 'g', initialType = 'g
         if (keyword !== '') pushLocation(`/search/${type}/${keyword}/${rating}`)
     }
 
+    
     return (
         <form className='form' onSubmit={handleSubmit}>
-            <input className='input' placeholder="Buscar" onChange={handleInputChange} maxLength={30} type='text' value={keyword} />
-            <select onChange={handleChangeRating} value={rating}>
-                <option key='g' value='g'>Suitable for all ages</option>
-                <option key='pg-13' value='pg-13'>+13</option>
-                <option key='r' value='r'>+18</option>
-            </select>
-            <select onChange={handleChangeType} value={type}>
-                <option key='gifs' value='gifs'>Gifs</option>
-                <option key='stickers' value='stickers'>Stickers</option>
-            </select>
-            <button type="submit">Buscar</button>
+            <input className='input' placeholder="Search" onChange={handleInputChange} maxLength={30} type='text' value={keyword} />
+            <div className='form__boxs-select'>
+                <select onChange={handleChangeRating} value={rating}>
+                    <option key='g' value='g'>Suitable for all ages</option>
+                    <option key='pg-13' value='pg-13'>+13</option>
+                    <option key='r' value='r'>+18</option>
+                </select>
+                <select onChange={handleChangeType} value={type}>
+                    <option key='gifs' value='gifs'>Gifs</option>
+                    <option key='stickers' value='stickers'>Stickers</option>
+                </select>
+            </div>
+
+            <button className="form__btn" type="submit">Search</button>
         </form>
     )
 }

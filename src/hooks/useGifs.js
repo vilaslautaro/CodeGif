@@ -4,7 +4,7 @@ import GifsContext from 'context/GifsContext'
 
 const INITIAL_PAGE = 0
 
-const useGifs = ({ keyword, rating, type } = { keyword: null }) => {
+const useGifs = ({ keyword, rating, type } = { keyword: 'simpsons', type: 'gifs' }) => {
     const { gifs, setGifs } = useContext(GifsContext);
     const [page, setPage] = useState(INITIAL_PAGE)
     const [loading, setLoading] = useState(false)
