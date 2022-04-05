@@ -1,6 +1,5 @@
 import './Home.css'
-import { useCallback } from 'react'
-import { useLocation } from 'wouter'
+
 import ListOfGifs from 'components/ListOfGifs/ListOfGifs'
 import Spinner from 'components/Spinner/Spinner'
 import useGifs from 'hooks/useGifs'
@@ -11,13 +10,6 @@ import { Helmet } from 'react-helmet'
 
 export default function Home() {
     const { loading, gifs } = useGifs()
-    const [, pushLocation] = useLocation()
-
-    const handleSubmit = useCallback(({ keyword }) => {
-        pushLocation(`/gifs/${keyword}`)
-    }, [pushLocation])
-
-
 
     return (
         <>
@@ -26,7 +18,7 @@ export default function Home() {
                 <meta name="description" content="app where you can search for your favorite gifs"/>
             </Helmet>
             <div>
-                <SearchForm onSubmit={handleSubmit} />
+                <SearchForm initialType={'gifs'}/>
             </div>
             <div className='container__homeGifs'>
                 <h3 className='container__titulo'>Ultima busqueda</h3>

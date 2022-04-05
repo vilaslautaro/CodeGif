@@ -8,8 +8,8 @@ const fromApiResponseToGifs = apiResponse => {
 
 }
 
-export default function getSingleGif({ id }) {
-    return fetch(`${API_URL}/gifs/${id}?api_key=${API_KEY}`)
+export default function getSingleGif({ id, type }) {
+    return fetch(`${API_URL}/${type}/${id}?api_key=${API_KEY}`)
         .then(res => res.json())
         .then(fromApiResponseToGifs)
 }

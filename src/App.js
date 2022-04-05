@@ -27,7 +27,7 @@ function App() {
             />
             <Route
               component={SearchResults}
-              path="/gifs/:keyword"
+              path="/:type/:keyword/:rating?"
             />
             <Route
               component={() => <h1>Error 404</h1>}
