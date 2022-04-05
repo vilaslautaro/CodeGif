@@ -6,7 +6,7 @@ import { Helmet } from 'react-helmet'
 import SearchForm from 'components/SearchForm/SearchForm'
 
 export default function Detail({ params }) {
-    const { gif, isLoading } = useSingleGif({ id: params.id, type: params.type })
+    const { gif, isLoading } = useSingleGif({ id: params.id })
     const title = gif ? gif.title : ''
 
     if (isLoading) {
@@ -28,7 +28,7 @@ export default function Detail({ params }) {
                 <meta name="description" content={{ title } + "| Codegif"} />
             </Helmet>
             <div>
-                <SearchForm initialKeyword={keyword} initialRating={rating} initialType={type} />
+                <SearchForm />
             </div>
             <SingleGif gif={gif} />
         </>

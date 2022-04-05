@@ -23,11 +23,11 @@ function App() {
             />
             <Route
               component={Detail}
-              path="/gif/:id"
+              path="/search/:id"
             />
             <Route
               component={SearchResults}
-              path="/:type/:keyword/:rating?"
+              path="/search/:type/:keyword/:rating?"
             />
             <Route
               component={() => <h1>Error 404</h1>}

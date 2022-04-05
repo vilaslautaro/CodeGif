@@ -2,10 +2,10 @@ import useForm from 'hooks/useForm'
 import React from 'react'
 import { useLocation } from 'wouter'
 
-const SearchForm = ({initialKeyword, initialRating, initialType}) => {
+const SearchForm = ({ initialKeyword = '', initialRating = 'g', initialType = 'gifs' } = {}) => {
     const [, pushLocation] = useLocation()
 
-    const { keyword, rating, type, updateKeyword, updateRating, updateType } = useForm({initialKeyword, initialRating, initialType})
+    const { keyword, rating, type, updateKeyword, updateRating, updateType } = useForm({ initialKeyword, initialRating, initialType })
 
     const handleChangeRating = e => {
         updateRating(e.target.value)
@@ -20,7 +20,7 @@ const SearchForm = ({initialKeyword, initialRating, initialType}) => {
 
     const handleSubmit = e => {
         e.preventDefault()
-        if (keyword !== '') pushLocation(`/${type}/${keyword}/${rating}`)
+        if (keyword !== '') pushLocation(`/search/${type}/${keyword}/${rating}`)
     }
 
     return (
