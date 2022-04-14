@@ -1,11 +1,16 @@
+.gif__container{
+    position: relative;
+}
+
+
+
 .gif{
     border-radius:15px;
     text-decoration: none;
     width: 99%;
     height: 300px;
     position: relative;
-    margin: 0 auto;
-    box-shadow: 0 0 1px #fff;
+    margin: 0;
 }
 
 .gif:hover{
@@ -24,9 +29,10 @@
 
 .gif__title{
     color: #fff;
-    top: 0px;
+    bottom: 0px;
     left: 0;
-    border-radius: 15px 0 15px 0;
+    border-radius: 0 15px 0 15px;
+    text-align: left;
     padding: 5px 12px 9px;
     margin: 0;
     text-transform: uppercase;
