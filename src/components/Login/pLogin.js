@@ -7,6 +7,7 @@ import { ErrorMessage } from '@hookform/error-message';
 export default function Register({ onLogin }) {
   const { signInWithEmailAndPassword } = useAuth();
   const [, navigate] = useLocation();
+  
   const {
     handleSubmit,
     register,
