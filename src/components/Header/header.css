@@ -1,0 +1,31 @@
+.header{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-flow: row nowrap;
+    padding: 0 20px;
+    margin-bottom: 50px;
+}
+
+.header__link{
+    color: #fff; 
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all .3s ease;
+}
+
+.header__link.link__fav{
+    margin-right:40px;
+}
+
+.header__link.login{
+    margin-right: 20px;
+}
+
+.header__link:hover{
+    transition: all .3s ease;
+    border-bottom: 1px solid #fff;
+}

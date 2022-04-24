@@ -1,0 +1,25 @@
+.fav{
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+    border-radius: 0 0 0 10px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    transition: all .3s ease;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 1;
+}
+
+
+.fav span{
+    font-size: 25px;
+    color: red;
+}
+
+.fav:hover{
+    transition: all .3s ease;
+    filter: brightness(1.2);
+    transform: scale(1.2);
+}

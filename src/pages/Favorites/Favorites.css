@@ -1,24 +1,39 @@
-.gif__container{
-    position: relative;
+:root{
+    --minmax: 300px; 
+  }
+  
+
+.container__favorites{
+        margin: 50px 10px 5px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(var(--minmax), 1fr) );
+        grid-template-rows: masonry;
+        gap: 10px;
+        position: relative;
 }
 
+.not__favorites{
+    margin-top: 100px;
+    color: #fff;
+    font-size: 40px;
+}
 
-
-.gif{
+.favorites{
     border-radius:15px;
     text-decoration: none;
     width: 99%;
     height: 300px;
+    max-width: 500px;
     position: relative;
-    margin: 0;
+    margin: 0 auto;
 }
 
-.gif:hover{
+.favorites:hover{
     cursor: pointer;
     text-decoration: underline;
 }
 
-.gif__img{
+.favorites__img{
     width: 100%;
     height: 100%;
     border-radius:15px;
@@ -27,7 +42,7 @@
     padding: 0;
 }
 
-.gif__title{
+.favorites__title{
     color: #fff;
     bottom: 0px;
     left: 0;
