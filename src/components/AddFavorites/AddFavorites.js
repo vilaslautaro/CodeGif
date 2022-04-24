@@ -1,15 +1,16 @@
 import { useAuth } from "context/authContext";
 import { useFav } from "context/favsContext";
-import "./Favorites.css";
+import "./AddFavorites.css";
 
-export default function Favorites({ idFav }) {
+export default function AddFavorites({ fav, handleAction }) {
   const { user } = useAuth();
-  const { addFav } = useFav();
+  const { addFav, deleteFav } = useFav();
 
   const handleClick = (e) => {
     e.preventDefault();
-    if(user === null) return alert('No has iniciado sesion')
-    addFav(idFav);
+    if(!user) return alert('No has iniciado sesion')
+    if(handleAction === "add") return addFav(fav);
+    if(handleAction === "delete") return deleteFav(fav)
   };
 
   return (

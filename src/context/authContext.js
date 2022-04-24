@@ -19,7 +19,9 @@ export const useAuth = () => {
 };
 
 export const AuthContextProvider = ({ children }) => {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(
+    () => window.sessionStorage.getItem("user") || ""
+  );
   const [loading, setLoading] = useState(true);
 
   const signUp = (email, password) => {
@@ -37,11 +39,14 @@ export const AuthContextProvider = ({ children }) => {
 
   const resetPassword = (email) => sendPasswordResetEmail(auth, email);
 
-  const logout = () => signOut(auth);
+  const logout = () => {
+    return signOut(auth);
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      window.sessionStorage.setItem("user", JSON.stringify(currentUser));
       setLoading(false);
     });
     return () => unsubscribe();

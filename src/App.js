@@ -8,6 +8,7 @@ import { GifsContextProvider } from "context/GifsContext";
 import { AuthContextProvider } from "context/authContext";
 import Header from "components/Header/Header";
 import Login from "./pages/Login/Login";
+import Favorites from "pages/Favorites/Favorites";
 
 const HomePage = lazy(() => import("pages/Home/Home"));
 
@@ -30,6 +31,7 @@ function App() {
                   path="/search/:type/:keyword/:rating?"
                 />
                 <Route component={Login} path="/login" />
+                <Route component={Favorites} path="/favorites" />
                 <Route component={() => <h1>Error 404</h1>} path="/404" />
               </section>
             </Suspense>
