@@ -52,6 +52,12 @@
     color: #000;
 }
 
+.form__btn[disabled]{
+    transition: 0.3s ease all;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
 @media screen and (max-width: 350px) {
     .form{
         font-size: 12px;

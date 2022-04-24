@@ -1,11 +1,23 @@
 import { useFav } from "context/favsContext";
-import { Link } from "wouter";
+import { Link, useRoute } from "wouter";
 import { useAuth } from "../../context/authContext";
 import "./header.css";
 
 export default function Header() {
   const { user, logout } = useAuth();
   const { setFavs } = useFav();
+  const [match] = useRoute("/login");
+
+  const content = match ? null : (
+    <>
+    <Link className="header__link login" to="/login">
+      Login
+    </Link>
+    <Link className="header__link login" to="/register">
+      Register
+    </Link>
+    </>
+  );
 
   const handleLogout = async () => {
     try {
@@ -28,11 +40,7 @@ export default function Header() {
             Logout
           </Link>
         </>
-      ) : (
-        <Link className="header__link login" to="/login">
-          Login
-        </Link>
-      )}
+      ) : {content} }
     </header>
   );
 }

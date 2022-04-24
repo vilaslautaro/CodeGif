@@ -1,0 +1,24 @@
+.form__login{
+    width: 100%;
+    max-width: 320px;
+}
+
+.form__login label{
+    display: block;
+    font-size: 14px;
+}
+
+.form__login input {
+    background: #fff;
+    border: none;
+    display: block;
+    font-size: 16px;
+    line-height: 2;
+    padding: 4px 8px;
+    margin-top:4px;
+    margin-bottom: 16px;
+}
+
+.form__login .form__btn{
+    width: 100%;
+}
