@@ -8,22 +8,11 @@ export default function Header() {
   const { setFavs } = useFav();
   const [match] = useRoute("/login");
 
-  const content = match ? null : (
-    <>
-    <Link className="header__link login" to="/login">
-      Login
-    </Link>
-    <Link className="header__link login" to="/register">
-      Register
-    </Link>
-    </>
-  );
-
   const handleLogout = async () => {
     try {
       await logout();
       window.sessionStorage.removeItem("user");
-      setFavs();
+      setFavs([]);
     } catch (error) {
       console.log(error.message);
     }
@@ -40,7 +29,16 @@ export default function Header() {
             Logout
           </Link>
         </>
-      ) : {content} }
+      ) : match ? null : (
+        <>
+          <Link className="header__link login" to="/login">
+            Login
+          </Link>
+          <Link className="header__link login" to="/register">
+            Register
+          </Link>
+        </>
+      )}
     </header>
   );
 }

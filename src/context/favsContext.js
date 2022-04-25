@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useEffect, useRef } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { setDoc, doc, getDoc } from "firebase/firestore";
 import { db, auth } from "../firebase/config";
+import { useAuth } from "context/authContext";
 
 const FavContext = createContext();
 
@@ -17,6 +18,7 @@ export const FavContextProvider = ({ children }) => {
   const secondRender = useRef(false);
   const thirdRender = useRef(false);
   const [favs, setFavs] = useState([]);
+  const { user } = useAuth();
 
   const addFav = (fav) => {
     if (!favs.some((favorite) => favorite.id === fav.id)) {
@@ -25,13 +27,15 @@ export const FavContextProvider = ({ children }) => {
   };
 
   const deleteFav = (idFav) => {
-    const newFavs = favs.filter(favorite => favorite.id !== idFav)
-    setFavs(newFavs)
-  }
+    const newFavs = favs.filter((favorite) => favorite.id !== idFav);
+    setFavs(newFavs);
+  };
 
   useEffect(() => {
     if (thirdRender.current) {
-      setDoc(dbRef, { ...favs });
+      if (user) {
+        setDoc(dbRef, { ...favs });
+      }
     }
     if (secondRender.current) {
       thirdRender.current = true;
@@ -41,7 +45,7 @@ export const FavContextProvider = ({ children }) => {
     }
 
     firstRender.current = true;
-  }, [favs, dbRef]);
+  }, [favs, dbRef, user]);
 
   useEffect(() => {
     const userFavs = onAuthStateChanged(auth, async (currentUser) => {
@@ -52,8 +56,6 @@ export const FavContextProvider = ({ children }) => {
         if (docUser.exists()) {
           const arraysUser = docUser.data();
           setFavs(Object.values(arraysUser));
-        } else {
-          setFavs([]);
         }
       }
     });

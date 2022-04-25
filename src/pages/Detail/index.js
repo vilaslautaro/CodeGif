@@ -1,5 +1,4 @@
 import SingleGif from 'components/SingleGif/SingleGif'
-import { Redirect } from 'wouter'
 import Spinner from 'components/Spinner/Spinner'
 import useSingleGif from 'hooks/useSingleGif'
 import { Helmet } from 'react-helmet'
@@ -24,7 +23,7 @@ export default function Detail({ params }) {
     return (
         <>
             <Helmet>
-                <title>{title} | Codegif</title>
+                <title>{title} | GifSticky</title>
                 <meta name="description" content={{ title } + "| Codegif"} />
             </Helmet>
             <div>

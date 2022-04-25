@@ -1,5 +1,5 @@
 import Spinner from 'components/Spinner/Spinner'
-import { useRef, useEffect, useCallback } from 'react'
+import { useRef, useEffect } from 'react'
 import ListOfGifs from 'components/ListOfGifs/ListOfGifs'
 import useGifs from 'hooks/useGifs'
 import useNearScreen from 'hooks/useNearScreen'
@@ -17,9 +17,9 @@ const SearchResults = ({ params }) => {
     })
     const title = gifs ? decodeURI(keyword) : ''
 
-    const debounceHandleNextPage = useCallback(debounce(
+    const debounceHandleNextPage = debounce(
         () => setPage(prevPage => prevPage + 1), 200
-    ), [setPage])
+    )
 
 
     useEffect(() => {
@@ -39,7 +39,7 @@ const SearchResults = ({ params }) => {
                 )
                 : <>
                     <Helmet>
-                        <title>{title} | Codegif</title>
+                        <title>{title} | GifSticky</title>
                         <meta name="description" content={decodeURI(keyword) + "| Codegif"}/>
                     </Helmet>
                     <div>

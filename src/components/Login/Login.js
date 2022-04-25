@@ -1,45 +1,39 @@
-import { useState } from "react";
 import { useLocation } from "wouter";
-import { useAuth } from "../../context/authContext";
+import { useAuth } from "context/authContext";
+import { useForm } from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
 
-export default function Login({ onLogin }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
-  const [, navigate] = useLocation();
+export default function PLogin({ onLogin }) {
   const { login } = useAuth();
+  const [, navigate] = useLocation();
+  const { handleSubmit, register, formState: { errors }} = useForm();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const onSubmit = async (values) => {
     try {
-      await login(email, password);
+      await login(values.email, values.password);
       onLogin && onLogin();
       navigate("/");
     } catch (error) {
-      setError(error.message);
+      console.log(error.message);
     }
   };
 
   return (
-    <form className="form__login" onSubmit={handleSubmit}>
-      <label>
-        Email
-        <input
-          type="email"
-          placeholder="Email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </label>
-      <label>
-        Password
-        <input
-          type="password"
-          placeholder="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </label>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input
+        type="email"
+        placeholder="Email"
+        {...register("email", { required: "This is required." })}
+      />
+      <ErrorMessage errors={errors} name="email" as="div" />
+      <input
+        type="password"
+        placeholder="password"
+        {...register("password", { required: "This is required." })}
+      />
+      <ErrorMessage errors={errors} name="password" as="div" />
       <button className="form__btn">Login</button>
-      {error && <p>{error}</p>}
     </form>
   );
 }
+

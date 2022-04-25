@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>Home | Codegif</title>
+        <title>Home | GifSticky</title>
         <meta
           name="description"
           content="app where you can search for your favorite gifs"

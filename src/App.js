@@ -8,10 +8,10 @@ import { GifsContextProvider } from "context/GifsContext";
 import { AuthContextProvider } from "context/authContext";
 import Header from "components/Header/Header";
 import Register from 'pages/Register'
-import Login from "./pages/Login";
+import Login from "pages/Login";
 import Favorites from "pages/Favorites";
 
-const HomePage = lazy(() => import("pages/Home/Home"));
+const HomePage = lazy(() => import("pages/Home"));
 
 function App() {
   return (
