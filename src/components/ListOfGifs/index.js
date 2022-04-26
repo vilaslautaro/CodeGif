@@ -1,4 +1,4 @@
-import Gif from "./Gif/Gif";
+import Gif from "./Gif";
 import { ContainerGifs } from "./ListOfGifs.styles";
 
 export default function ListOfGifs({ gifs }) {

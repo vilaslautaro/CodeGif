@@ -9,6 +9,7 @@ export const Link = styled(LinkWouter)`
   color: #fff;
   cursor: pointer;
   font-size: 1.3em;
+  text-decoration: none;
   font-weight: 600;
   padding: 7px 25px;
   transition: 0.5s ease all;

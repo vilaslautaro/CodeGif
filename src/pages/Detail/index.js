@@ -1,4 +1,4 @@
-import SingleGif from 'components/SingleGif/SingleGif'
+import SingleGif from 'components/SingleGif'
 import Spinner from 'components/Spinner/Spinner'
 import useSingleGif from 'hooks/useSingleGif'
 import { Helmet } from 'react-helmet'

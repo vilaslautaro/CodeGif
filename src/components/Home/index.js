@@ -1,5 +1,5 @@
 import { ContainerHome, ContainerHomeGif, ContainerTitle } from "./Home.styles";
-import ListOfGifs from "components/ListOfGifs/ListOfGifs";
+import ListOfGifs from "components/ListOfGifs";
 import Spinner from "components/Spinner/Spinner";
 import useGifs from "hooks/useGifs";
 import LazyTrending from "components/TrendingSearches/LazyTrending";

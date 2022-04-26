@@ -1,16 +1,20 @@
 import styled from "@emotion/styled";
 
 export const GifContainer = styled.div`
-  position: relative;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const Gif = styled.div`
   border-radius: 15px;
   display: inline-block;
   margin: 10px 20px;
-  position: relative;
+  max-heigth: 500px;
+  max-width: 700px;
   text-decoration: none;
-  width: 100%;
+  width: 90%;
   &:hover {
     cursor: pointer;
     text-decoration: underline;
@@ -20,20 +24,11 @@ export const Gif = styled.div`
 export const GifImg = styled.img`
   border-radius: 15px;
   width: 100%;
-  z-index: 2;
 `;
 
-export const GifTitle = styled.span`
-  background: rgba(0, 0, 0, 0.7);
-  border-radius: 0px 15px 0px 15px;
-  bottom: -2px;
+export const GifTitle = styled.h3`
   color: #fff;
-  font-size: 0.7rem;
-  left: 0;
-  margin: 0;
-  margin: 10px 0 5px;
-  padding: 5px 12px 9px;
-  position: absolute;
+  font-size: 1.3rem;
+  margin: 20px 0 10px;
   text-transform: uppercase;
-  z-index: 3;
 `;

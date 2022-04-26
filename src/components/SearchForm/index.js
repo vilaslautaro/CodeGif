@@ -1,6 +1,11 @@
 import useForm from "hooks/useForm";
 import React from "react";
-import { Form, Input, FormContainerSelect, FormSelect } from "./SearchForm.styles";
+import {
+  Form,
+  Input,
+  FormContainerSelect,
+  FormSelect,
+} from "./SearchForm.styles";
 import Button from "components/Button";
 import { useLocation } from "wouter";
 

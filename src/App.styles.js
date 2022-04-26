@@ -4,7 +4,6 @@ import { Link } from "wouter";
 export const ContainerApp = styled.div`
   background: rgb(0, 0, 0);
   margin: 0 auto;
-  max-width: 1400px;
   padding: 30px 0;
   text-align: center;
 `;

@@ -4,12 +4,10 @@ const ItemGif = ({ gif }) => {
   return (
     <>
       <GifContainer>
-        {
-          <Gif id={gif.id}>
-            <GifTitle>{gif.title}</GifTitle>
-            <GifImg src={gif.url} alt="gif" />
-          </Gif>
-        }
+        <GifTitle>{gif.title}</GifTitle>
+        <Gif id={gif.id}>
+          <GifImg src={gif.url} alt="gif" />
+        </Gif>
       </GifContainer>
     </>
   );

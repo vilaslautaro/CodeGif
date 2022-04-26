@@ -30,7 +30,6 @@ export const FavContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    console.log("el user ha cambiado");
     const userFavs = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
         const docRef = doc(db, "users", currentUser.uid);
