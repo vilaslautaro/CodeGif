@@ -1,8 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { ThemeProvider } from "@emotion/react";
+import { theme } from "styles";
 import App from "./App";
-import reportWebVitals from "./reportWebVitals";
+import './Index.css'
 
-ReactDOM.render(<App />, document.getElementById("root"));
-
-reportWebVitals();
+ReactDOM.render(
+  <React.StrictMode>
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
+  </React.StrictMode>,
+  document.getElementById("root")
+);

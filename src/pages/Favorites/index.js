@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import AddFavorites from "components/AddFavorites/AddFavorites";
+import AddFavorites from "components/AddFavorites";
 import { useAuth } from "context/authContext";
 import { useFav } from "context/favsContext";
 import { useLocation, Link } from "wouter";

@@ -1,9 +1,9 @@
 import { useAuth } from "context/authContext";
 import { useFav } from "context/favsContext";
-import Modal from "components/Modal/Modal";
+import Modal from "components/Modal";
 import { useState } from "react";
-import "./AddFavorites.css";
-import Login from "components/Login/Login";
+import { Fav, Span } from "./AddFavorites.styles";
+import Login from "components/Login";
 
 export default function AddFavorites({ fav, handleAction }) {
   const { user } = useAuth();
@@ -22,19 +22,19 @@ export default function AddFavorites({ fav, handleAction }) {
   };
 
   const handleLogin = () => {
-    setShowModal(false)
-  }
+    setShowModal(false);
+  };
 
   return (
     <>
-      <button className="fav" onClick={handleClick}>
-        <span role="img" aria-label="gif favorite">
+      <Fav onClick={handleClick}>
+        <Span role="img" aria-label="gif favorite">
           ❤
-        </span>
-      </button>
+        </Span>
+      </Fav>
       {showModal && (
         <Modal onClose={handleClose}>
-          <Login onLogin={handleLogin}/>
+          <Login onLogin={handleLogin} />
         </Modal>
       )}
     </>

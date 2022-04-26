@@ -5,7 +5,7 @@ import useGifs from 'hooks/useGifs'
 import useNearScreen from 'hooks/useNearScreen'
 import debounce from 'just-debounce-it'
 import { Helmet } from 'react-helmet'
-import SearchForm from 'components/SearchForm/SearchForm'
+import SearchForm from 'components/SearchForm'
 
 const SearchResults = ({ params }) => {
     const { keyword, rating, type } = params

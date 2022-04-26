@@ -1,19 +1,18 @@
-import "./gif.css";
 import React from "react";
-import { Link } from "wouter";
-import AddFavorites from "components/AddFavorites/AddFavorites";
+import AddFavorites from "components/AddFavorites";
+import { GifContainer, Gif, GifImg, GifSpan } from "./Gif.styles";
 
-const Gif = ({ id, title, url }) => {
-const DateGif = {id, title, url}
+const GifComponent = ({ id, title, url }) => {
+  const DateGif = { id, title, url };
   return (
-    <div className="gif__container">
-      <AddFavorites fav={DateGif} handleAction={'add'}/>
-      <Link to={`/search/${id}`} className="gif">
-        <span className="gif__title">{title}</span>
-        <img className="gif__img" src={url} alt={title} />
-      </Link>
-    </div>
+    <GifContainer>
+      <AddFavorites fav={DateGif} handleAction={"add"} />
+      <Gif to={`/search/${id}`}>
+        <GifSpan>{title}</GifSpan>
+        <GifImg src={url} alt={title} />
+      </Gif>
+    </GifContainer>
   );
 };
 
-export default React.memo(Gif);
+export default React.memo(GifComponent);

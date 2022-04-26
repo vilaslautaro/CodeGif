@@ -1,17 +1,18 @@
+import { GifContainer, Gif, GifImg, GifTitle } from "./SingleGif.styles";
 
-const ItemGif = ({gif}) => {
-     return (
-        <>
-            <div className="app__Section">
-                {
-                    <div id={gif.id} className="gif">
-                        <h4>{gif.title}</h4>
-                        <img src={gif.url} alt="gif" />
-                    </div>
-                }
-            </div>
-        </>
-    )
-}
+const ItemGif = ({ gif }) => {
+  return (
+    <>
+      <GifContainer>
+        {
+          <Gif id={gif.id}>
+            <GifTitle>{gif.title}</GifTitle>
+            <GifImg src={gif.url} alt="gif" />
+          </Gif>
+        }
+      </GifContainer>
+    </>
+  );
+};
 
-export default ItemGif
+export default ItemGif;

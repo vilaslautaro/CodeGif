@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, useRef } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { setDoc, doc, getDoc } from "firebase/firestore";
 import { db, auth } from "../firebase/config";
@@ -14,15 +14,13 @@ export const useFav = () => {
 
 export const FavContextProvider = ({ children }) => {
   const [dbRef, setDbRef] = useState("");
-  const firstRender = useRef(false);
-  const secondRender = useRef(false);
-  const thirdRender = useRef(false);
   const [favs, setFavs] = useState([]);
   const { user } = useAuth();
 
   const addFav = (fav) => {
     if (!favs.some((favorite) => favorite.id === fav.id)) {
       setFavs([...favs, fav]);
+      setDoc(dbRef, { ...favs });
     } else console.log("Ya esta en favoritos");
   };
 
@@ -32,22 +30,7 @@ export const FavContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if (thirdRender.current) {
-      if (user) {
-        setDoc(dbRef, { ...favs });
-      }
-    }
-    if (secondRender.current) {
-      thirdRender.current = true;
-    }
-    if (firstRender.current) {
-      secondRender.current = true;
-    }
-
-    firstRender.current = true;
-  }, [favs, dbRef, user]);
-
-  useEffect(() => {
+    console.log("el user ha cambiado");
     const userFavs = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
         const docRef = doc(db, "users", currentUser.uid);
@@ -60,7 +43,13 @@ export const FavContextProvider = ({ children }) => {
       }
     });
     return () => userFavs();
-  }, []);
+  }, [user]);
+
+  // useEffect(() => {
+  //   if (user && dbRef) {
+  //     setDoc(dbRef, { ...favs });
+  //   }
+  // }, [favs, dbRef, user]);
 
   return (
     <FavContext.Provider value={{ addFav, favs, setFavs, deleteFav }}>

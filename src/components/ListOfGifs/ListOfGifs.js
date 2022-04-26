@@ -1,19 +1,12 @@
-import Gif from './Gif/Gif';
-import './listOfGifs.css'
+import Gif from "./Gif/Gif";
+import { ContainerGifs } from "./ListOfGifs.styles";
 
-export default function ListOfGifs({gifs}) {
-    return (
-            <div className="container__gifs">
-                {
-                    gifs.map(({ id, title, url }) =>
-                        <Gif
-                            id={id}
-                            key={id}
-                            title={title}
-                            url={url}
-                        />
-                    )
-                }
-            </div>
-    )
+export default function ListOfGifs({ gifs }) {
+  return (
+    <ContainerGifs>
+      {gifs.map(({ id, title, url }) => (
+        <Gif id={id} key={id} title={title} url={url} />
+      ))}
+    </ContainerGifs>
+  );
 }
