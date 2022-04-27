@@ -9,11 +9,9 @@ import AddFavorites from "components/AddFavorites";
 import { useAuth } from "context/authContext";
 import { useFav } from "context/favsContext";
 import { useLocation, Link } from "wouter";
-import { useEffect, useState } from "react";
 
 export default function Favorites() {
-  const [favs, setFavs] = useState(false);
-  const { getFavs } = useFav();
+  const { favs } = useFav();
   const { user } = useAuth();
   const [, navigate] = useLocation();
 
@@ -21,11 +19,6 @@ export default function Favorites() {
 
   if (favs.length < 1) return <NotFavorites>No hay favoritos</NotFavorites>;
 
-  if (user) {
-    getFavs()
-      .then((data) => setFavs(data))
-      .catch((error) => console.log(error));
-  }
 
   return (
     <ContainerFavorites>

@@ -1,11 +1,9 @@
-import { useFav } from "context/favsContext";
 import { Header, HeaderLink, HeaderButton } from "./Header.styles";
 import { useRoute } from "wouter";
 import { useAuth } from "../../context/authContext";
 
 export default function HeaderComponent() {
   const { user, logout } = useAuth();
-  const { setFavs } = useFav();
   const [match] = useRoute("/login");
 
   const handleLogout = async (e) => {
@@ -13,7 +11,6 @@ export default function HeaderComponent() {
     try {
       await logout();
       window.sessionStorage.removeItem("user");
-      setFavs([]);
     } catch (error) {
       console.log(error.message);
     }

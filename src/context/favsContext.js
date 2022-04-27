@@ -3,19 +3,13 @@ import {
   setDoc,
   doc,
   getDoc,
-  query,
-  where,
   onSnapshot,
-  collection,
-  addDoc,
-  getDocs,
   updateDoc,
   arrayUnion,
-  deleteField,
   arrayRemove,
 } from "firebase/firestore";
 import { db, auth } from "../firebase/config";
-// import { useAuth } from "context/authContext";
+import { useAuth } from "context/authContext";
 
 const FavContext = createContext();
 
@@ -26,15 +20,19 @@ export const useFav = () => {
 };
 
 export const FavContextProvider = ({ children }) => {
+  const [favs, setFavs] = useState(false);
+  const { user } = useAuth();
 
   const addFav = async (fav) => {
     const docRef = doc(db, "users", auth.currentUser.uid);
     const docUser = await getDoc(docRef);
     if (docUser.exists()) {
-      // validacion de gif repetido
-      // codigo gif repetido es true
-      // else gif repetido es false
-      updateFavs(fav, docRef);
+      const data = docUser.data();
+      if (data.favorites.some((favorite) => favorite.id === fav.id)) {
+        console.log("ya esta en favoritos");
+      } else {
+        updateFavs(fav, docRef);
+      }
     } else {
       setFirstFav(fav, docRef);
     }
@@ -63,13 +61,32 @@ export const FavContextProvider = ({ children }) => {
   const getFavs = async () => {
     const docRef = doc(db, "users", auth.currentUser.uid);
     const docUser = await getDoc(docRef);
-    const userData = docUser.data();
-    const favs = userData.favorites;
-    return favs;
+    const data = docUser.data();
+    setFavs(data.favorites);
   };
 
+  useEffect(() => {
+    if (auth.currentUser) {
+      const docRef = doc(db, "users", auth.currentUser.uid);
+      const unsubscribe = onSnapshot(docRef, (doc) => {
+        const data = doc.data();
+        console.log("Current data: ", doc.data());
+        setFavs(data.favorites);
+      });
+
+      return unsubscribe();
+    }
+  }, []);
+
+  // useEffect(() => {
+  //   if (user) {
+  //     getFavs();
+  //     return () => getFavs();
+  //   }
+  // }, [user]);
+
   return (
-    <FavContext.Provider value={{ addFav, deleteFav, getFavs }}>
+    <FavContext.Provider value={{ addFav, deleteFav, getFavs, favs }}>
       {children}
     </FavContext.Provider>
   );
