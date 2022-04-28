@@ -1,0 +1,13 @@
+:root {
+  --minmax: 300px;
+  --columns: 4fr 1fr;
+}
+
+body {
+  margin: 0 auto;
+  max-width: 1400px;
+  width: 100%;
+  font-size: 16px;
+  background: #000;
+  display: grid;
+}

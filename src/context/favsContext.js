@@ -1,7 +1,15 @@
-import { createContext, useContext, useState, useEffect, useRef } from "react";
-import { onAuthStateChanged } from "firebase/auth";
-import { setDoc, doc, getDoc } from "firebase/firestore";
+import { createContext, useContext, useState, useEffect } from "react";
+import {
+  setDoc,
+  doc,
+  getDoc,
+  onSnapshot,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
+} from "firebase/firestore";
 import { db, auth } from "../firebase/config";
+import { useAuth } from "context/authContext";
 
 const FavContext = createContext();
 
@@ -12,56 +20,92 @@ export const useFav = () => {
 };
 
 export const FavContextProvider = ({ children }) => {
-  const [dbRef, setDbRef] = useState("");
-  const firstRender = useRef(false);
-  const secondRender = useRef(false);
-  const thirdRender = useRef(false);
-  const [favs, setFavs] = useState([]);
+  const [userLogout, setUserLogout] = useState(false);
+  const [showModalFav, setShowModalFav] = useState(false);
+  const [favs, setFavs] = useState(false);
+  const { user } = useAuth();
 
-  const addFav = (fav) => {
-    if (!favs.some((favorite) => favorite.id === fav.id)) {
-      setFavs([...favs, fav]);
-    } else console.log("Ya esta en favoritos");
+  const addFav = async (fav) => {
+    const docRef = doc(db, "users", auth.currentUser.uid);
+    const docUser = await getDoc(docRef);
+    if (docUser.exists()) {
+      const data = docUser.data();
+      if (data.favorites.some((favorite) => favorite.id === fav.id)) {
+        setShowModalFav({
+          text: "This favourite is already on your list",
+          type: "false",
+        });
+      } else {
+        updateFavs(fav, docRef);
+      }
+    } else {
+      setFirstFav(fav, docRef);
+    }
   };
 
-  const deleteFav = (idFav) => {
-    const newFavs = favs.filter(favorite => favorite.id !== idFav)
-    setFavs(newFavs)
-  }
+  const setFirstFav = async (fav, docRef) => {
+    const structureUser = {
+      favorites: [{ id: fav.id, url: fav.url, title: fav.title }],
+    };
+    try {
+      await setDoc(docRef, structureUser);
+      setShowModalFav({ text: "Favourite successfully added", type: "true" });
+    } catch (error) {
+      setShowModalFav({ text: "Sorry, an error has occurred", type: "false" });
+    }
+  };
+
+  const updateFavs = async (fav, docRef) => {
+    const structureFav = { id: fav.id, url: fav.url, title: fav.title };
+    try {
+      await updateDoc(docRef, {
+        favorites: arrayUnion(structureFav),
+      });
+      setShowModalFav({ text: "Favourite successfully added", type: "true" });
+    } catch (error) {
+      setShowModalFav({ text: "Sorry, an error has occurred", type: "false" });
+    }
+  };
+
+  const deleteFav = async (fav) => {
+    const docRef = doc(db, "users", auth.currentUser.uid);
+    try {
+      await updateDoc(docRef, {
+        favorites: arrayRemove(fav),
+      });
+      setShowModalFav({ text: "Favourite successfully deleted", type: "true" });
+    } catch (error) {
+      setShowModalFav({ text: "Sorry, an error has occurred", type: "false" });
+    }
+  };
 
   useEffect(() => {
-    if (thirdRender.current) {
-      setDoc(dbRef, { ...favs });
+    let unsubscribe = () => {};
+    if (auth.currentUser) {
+      setUserLogout(false);
+      const docRef = doc(db, "users", auth.currentUser.uid);
+      unsubscribe = onSnapshot(docRef, (doc) => {
+        const data = doc.data();
+        setFavs(data.favorites);
+      });
     }
-    if (secondRender.current) {
-      thirdRender.current = true;
+    if (userLogout) {
+      return unsubscribe();
     }
-    if (firstRender.current) {
-      secondRender.current = true;
-    }
-
-    firstRender.current = true;
-  }, [favs, dbRef]);
-
-  useEffect(() => {
-    const userFavs = onAuthStateChanged(auth, async (currentUser) => {
-      if (currentUser) {
-        const docRef = doc(db, "users", currentUser.uid);
-        setDbRef(docRef);
-        const docUser = await getDoc(docRef);
-        if (docUser.exists()) {
-          const arraysUser = docUser.data();
-          setFavs(Object.values(arraysUser));
-        } else {
-          setFavs([]);
-        }
-      }
-    });
-    return () => userFavs();
-  }, []);
+  }, [user, userLogout]);
 
   return (
-    <FavContext.Provider value={{ addFav, favs, setFavs, deleteFav }}>
+    <FavContext.Provider
+      value={{
+        addFav,
+        deleteFav,
+        favs,
+        setUserLogout,
+        setFavs,
+        showModalFav,
+        setShowModalFav,
+      }}
+    >
       {children}
     </FavContext.Provider>
   );
