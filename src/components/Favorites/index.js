@@ -26,7 +26,7 @@ export default function Favorites() {
         favs.map(({ id, title, url }) => {
           return (
             <Favorite key={id}>
-              <AddFavorites fav={{id, title, url}} handleAction={"delete"} />
+              <AddFavorites fav={{id, title, url}} handleAction={"delete"} icon="✖" />
               <Link to={`/search/${id}`}>
                 <FavoriteSpan>{title}</FavoriteSpan>
                 <FavoriteImg src={url} alt={title} />

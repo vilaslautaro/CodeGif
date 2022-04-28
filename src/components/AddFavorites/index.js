@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Fav, Span } from "./AddFavorites.styles";
 import Login from "components/Login";
 
-export default function AddFavorites({ fav, handleAction }) {
+export default function AddFavorites({ fav, handleAction, icon = "❤" }) {
   const { user } = useAuth();
   const { addFav, deleteFav } = useFav();
   const [showModal, setShowModal] = useState(false);
@@ -29,7 +29,7 @@ export default function AddFavorites({ fav, handleAction }) {
     <>
       <Fav onClick={handleClick}>
         <Span role="img" aria-label="gif favorite">
-          ❤
+          {icon}
         </Span>
       </Fav>
       {showModal && (

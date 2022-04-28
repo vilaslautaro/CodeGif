@@ -7,9 +7,9 @@ export const ContainerForm = styled.div`
 
 export const TitleForm = styled.h3`
   color: #fff;
-  font-size: 2rem;
+  font-size: 1.75rem;
   font-weight: 600;
-  margin: 20px auto;
+  margin: 50px auto 20px;
 `;
 
 export const Form = styled.form`

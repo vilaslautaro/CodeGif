@@ -28,4 +28,4 @@ export const HeaderLink = styled(Link)`
   }
 `;
 
-export const HeaderButton = HeaderLink.withComponent("button");
+export const HeaderButton = HeaderLink.withComponent("span");

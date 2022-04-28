@@ -20,6 +20,8 @@ export const useFav = () => {
 };
 
 export const FavContextProvider = ({ children }) => {
+  const [userLogout, setUserLogout] = useState(false);
+  const [showModalFav, setShowModalFav] = useState(false);
   const [favs, setFavs] = useState(false);
   const { user } = useAuth();
 
@@ -29,7 +31,10 @@ export const FavContextProvider = ({ children }) => {
     if (docUser.exists()) {
       const data = docUser.data();
       if (data.favorites.some((favorite) => favorite.id === fav.id)) {
-        console.log("ya esta en favoritos");
+        setShowModalFav({
+          text: "This favourite is already on your list",
+          type: "false",
+        });
       } else {
         updateFavs(fav, docRef);
       }
@@ -42,51 +47,65 @@ export const FavContextProvider = ({ children }) => {
     const structureUser = {
       favorites: [{ id: fav.id, url: fav.url, title: fav.title }],
     };
-    await setDoc(docRef, structureUser);
+    try {
+      await setDoc(docRef, structureUser);
+      setShowModalFav({ text: "Favourite successfully added", type: "true" });
+    } catch (error) {
+      setShowModalFav({ text: "Sorry, an error has occurred", type: "false" });
+    }
   };
 
   const updateFavs = async (fav, docRef) => {
-    await updateDoc(docRef, {
-      favorites: arrayUnion({ id: fav.id, url: fav.url, title: fav.title }),
-    });
+    const structureFav = { id: fav.id, url: fav.url, title: fav.title };
+    try {
+      await updateDoc(docRef, {
+        favorites: arrayUnion(structureFav),
+      });
+      setShowModalFav({ text: "Favourite successfully added", type: "true" });
+    } catch (error) {
+      setShowModalFav({ text: "Sorry, an error has occurred", type: "false" });
+    }
   };
 
   const deleteFav = async (fav) => {
     const docRef = doc(db, "users", auth.currentUser.uid);
-    await updateDoc(docRef, {
-      favorites: arrayRemove(fav),
-    });
-  };
-
-  const getFavs = async () => {
-    const docRef = doc(db, "users", auth.currentUser.uid);
-    const docUser = await getDoc(docRef);
-    const data = docUser.data();
-    setFavs(data.favorites);
+    try {
+      await updateDoc(docRef, {
+        favorites: arrayRemove(fav),
+      });
+      setShowModalFav({ text: "Favourite successfully deleted", type: "true" });
+    } catch (error) {
+      setShowModalFav({ text: "Sorry, an error has occurred", type: "false" });
+    }
   };
 
   useEffect(() => {
+    let unsubscribe = () => {};
     if (auth.currentUser) {
+      setUserLogout(false);
       const docRef = doc(db, "users", auth.currentUser.uid);
-      const unsubscribe = onSnapshot(docRef, (doc) => {
+      unsubscribe = onSnapshot(docRef, (doc) => {
         const data = doc.data();
-        console.log("Current data: ", doc.data());
         setFavs(data.favorites);
       });
-
+    }
+    if (userLogout) {
       return unsubscribe();
     }
-  }, []);
-
-  // useEffect(() => {
-  //   if (user) {
-  //     getFavs();
-  //     return () => getFavs();
-  //   }
-  // }, [user]);
+  }, [user, userLogout]);
 
   return (
-    <FavContext.Provider value={{ addFav, deleteFav, getFavs, favs }}>
+    <FavContext.Provider
+      value={{
+        addFav,
+        deleteFav,
+        favs,
+        setUserLogout,
+        setFavs,
+        showModalFav,
+        setShowModalFav,
+      }}
+    >
       {children}
     </FavContext.Provider>
   );

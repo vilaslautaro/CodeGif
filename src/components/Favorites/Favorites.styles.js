@@ -25,6 +25,7 @@ export const Favorite = styled.div`
   border-radius: 15px;
   text-decoration: none;
   width: 100%;
+  max-width: 600px;
   height: 300px;
   position: relative;
   margin: 0 auto;

@@ -28,13 +28,13 @@ export const CategoryContain = styled.li`
   font-size: 15px;
   font-weight: 600;
   border-radius: 9px;
-  &:nth-child(1n) {
+  &:nth-of-type(1n) {
     background: rgb(238, 251, 0);
   },
-  &:nth-child(2n) {
+  &:nth-of-type(2n) {
     background: rgb(0, 255, 255);
   },
-  &:nth-child(3n) {
+  &:nth-of-type(3n) {
     background: rgb(255, 0, 230);
   }
 `;

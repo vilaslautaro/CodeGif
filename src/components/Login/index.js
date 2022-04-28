@@ -10,9 +10,11 @@ import {
   ContainerForm,
   TitleForm,
 } from "./Login.styles";
+import { useFav } from "context/favsContext";
 
 export default function Login({ onLogin }) {
   const { login } = useAuth();
+  const {setShowModalFav} = useFav()
   const [, navigate] = useLocation();
   const {
     handleSubmit,
@@ -25,8 +27,9 @@ export default function Login({ onLogin }) {
       await login(values.email, values.password);
       onLogin && onLogin();
       navigate("/");
+      setShowModalFav({ text: "Successful login", type: "true" });
     } catch (error) {
-      console.log(error.message);
+      setShowModalFav({ text: "Sorry, an error has occurred", type: "false" });
     }
   };
 

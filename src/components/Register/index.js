@@ -10,8 +10,10 @@ import {
 import { useAuth } from "context/authContext";
 import { useLocation } from "wouter";
 import Button from "components/Button";
+import { useFav } from "context/favsContext";
 
 export default function Register() {
+  const { setShowModalFav } = useFav();
   const { signUp } = useAuth();
   const [, navigate] = useLocation();
   const initialValues = { email: "", password: "" };
@@ -38,10 +40,16 @@ export default function Register() {
           onSubmit={async (values) => {
             try {
               await signUp(values.email, values.password);
-              console.log("se ha registrado de manera exitosa");
               navigate("/login");
+              setShowModalFav({
+                text: "Successful registration",
+                type: "true",
+              });
             } catch (error) {
-              console.log(error.message);
+              setShowModalFav({
+                text: "Sorry, an error has occurred",
+                type: "false",
+              });
             }
           }}
         >

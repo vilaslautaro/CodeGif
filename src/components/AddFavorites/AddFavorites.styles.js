@@ -12,14 +12,19 @@ export const Fav = styled.button`
   transition: all 0.3s ease;
   width: 40px;
   z-index: 2;
-  & :hover {
-    filter: brightness(1.2);
-    transform: scale(1.2);
+  &:hover {
+    transform: scale(1.1);
+    background:  rgb(0,0,0);
     transition: all 0.3s ease;
+  }
+  &:active > span {
+    transition: all 0.3s ease;
+    color: #b20100;
   }
 `;
 
 export const Span = styled.span`
-  color: red;
+  
+  color: #fd0101;
   font-size: 25px;
 `;
