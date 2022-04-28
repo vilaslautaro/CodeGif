@@ -1,70 +1,67 @@
-# Getting Started with Create React App
+# CryptoMarket - Ecommerce Crypto
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Tabla de contenido
 
-## Available Scripts
+- [Descripcion](#descripcion)
+  - [Desafio](#desafio)
+  - [Gif](#Gif)
+  - [Link](#link)
+- [Mi Proceso](#mi-proceso)
+  - [Construido con](#construido-con)
+- [Autor](#autor)
 
-In the project directory, you can run:
+## Descripcion
 
-### `npm start`
+### Aplicacion en la que podes realizar la busqueda de los gifs y stickers que mas te gusten
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Desafio
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Los usuarios deben ser capaces de:
 
-### `npm test`
+- Registrarse y hacer el login.
+- Realizar una busqueda y lograr visualizar los gifs o stickers segun los filtros que haya seleccionado.
+- Agregar favoritos.
+- Eliminar favoritos.
+- Cerrar sesion.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Gif
 
-### `npm run build`
+![Previsualizacion de la pagina web GifSticky]()
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+> Previsualizacion del sitio web
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Link
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Sitio web: [GifSticky](https://gifsticky.vercel.app/)
 
-### `npm run eject`
+## Mi proceso
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Construido con
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- HTML5
+- Javascript.
+- ReactJS:
+  - Implementaciones: react.memo, react.lazy, suspense, ReactDOM.createPortal, Styled components para el css.
+  - Hooks utilizados: useState, useEffect, useContext, useRef, useCallback, useReducer.
+  
+- Firebase: Utilizado como base de datos para los favoritos y como autenticador para el registro y login del usuario.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+#### Librerias de ReactJS:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- wouter (routes)
+- polyfill de intersection-observer(add support the IE)
+- just-debounce-it
+- react-helmet (seo)
+- react-hook-form (form login)
+- formik (form register)
+- @emotion/react
+- @emotion/styled (styled component)
 
-## Learn More
+### Api's utilizadas:
+ - Giphy: [GiphyApi](https://developers.giphy.com/branch/master/docs/api/)
+ - IntersectionObserver (Api local)
+## Autor
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Sitio Web - [Lautaro Vilas](https://lautarovilas.com)
+- GitHub [@vilaslautaro](https://github.com/vilaslautaro)
+- LinkedIn - [@lautarovilas](https://www.linkedin.com/in/lautarovilas/)
