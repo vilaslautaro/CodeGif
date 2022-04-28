@@ -8,6 +8,7 @@
   - [Link](#link)
 - [Mi Proceso](#mi-proceso)
   - [Construido con](#construido-con)
+- [Api's Utilizadas](#apis-utilizadas)
 - [Autor](#autor)
 
 ## Descripcion
@@ -26,9 +27,9 @@ Los usuarios deben ser capaces de:
 
 ### Gif
 
-![Previsualizacion de la pagina web GifSticky](https://res.cloudinary.com/dn7qsxzdf/image/upload/v1651164501/gifsticky/gisticky.gif)
+![Previsualizacion web GifSticky](https://res.cloudinary.com/dn7qsxzdf/image/upload/v1651164904/gifsticky/gif.gif)
 
-> Previsualizacion del sitio web
+> Previsualizacion de la app
 
 ### Link
 
