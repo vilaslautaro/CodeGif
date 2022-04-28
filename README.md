@@ -26,7 +26,7 @@ Los usuarios deben ser capaces de:
 
 ### Gif
 
-![Previsualizacion de la pagina web GifSticky]()
+![Previsualizacion de la pagina web GifSticky](https://res.cloudinary.com/dn7qsxzdf/video/upload/v1651164197/gifsticky/Home___GifSticky__vkgyfg.mp4)
 
 > Previsualizacion del sitio web
 
