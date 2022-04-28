@@ -1,4 +1,4 @@
-# CryptoMarket - Ecommerce Crypto
+# GifSticky - App de Gif & Stickers
 
 ## Tabla de contenido
 
